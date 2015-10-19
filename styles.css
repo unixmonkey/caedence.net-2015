@@ -1,5 +1,13 @@
-body {
+header {
   color: #2DBEDA;
+}
+
+h2 {
+  color: rebeccapurple;
+}
+
+h3 {
+  color: #4AB141;
 }
 
 article {
