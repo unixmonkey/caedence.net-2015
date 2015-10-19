@@ -2,7 +2,7 @@ var app = require('express')();
 var db = require('mongoose');
 db.connect('mongodb://localhost/caedence_net_development');
 
-var Note = db.model('Note', {
+var NoteSchema = db.Schema({
   title: String,
   body_html: String,
   body_text: String,
@@ -10,6 +10,8 @@ var Note = db.model('Note', {
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
 });
+
+var Note = db.model('Note', NoteSchema);
 
 app.post('/notes/', function(req, res) {
   var newNote = new Note({
