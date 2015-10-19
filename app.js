@@ -11,6 +11,17 @@ var Note = db.model('Note', {
   updated_at: { type: Date, default: Date.now }
 });
 
+app.post('/notes/', function(req, res) {
+  var newNote = new Note({
+    title: 'First Note!',
+    body_html: '<p>First!</p>',
+    body_text: 'First!'
+  });
+  newNote.save(function(err) {
+    if (err) { console.log('OHNOES!'); }
+  });
+})
+
 // create some records with mongo cli like this:
 // $ mongod
 // > use caedence_net_development
@@ -23,6 +34,14 @@ app.get('/notes/', function(req, res) {
     res.json(notes);
   });
 });
+
+app.get('/notes/:id', function(req, res) {
+  var id = req.params.id;
+  var note = Note.findOne({ '_id': id }, function(err, note) {
+    res.json(note);
+  });
+});
+
 app.get('/', function(req, res) {
   res.send('Hello World!');
 });
