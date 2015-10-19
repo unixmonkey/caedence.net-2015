@@ -30,14 +30,14 @@ app.post('/notes/', function(req, res) {
 // > db.notes.find()
 // { "_id" : ObjectId("562473c0802fa33ca991217b"), "title" : "Hello", "body_html" : "<p>World</p>", "body_text" : "World" }
 app.get('/notes/', function(req, res) {
-  Note.find(function(err, notes) {
+  Note.find().then(function(notes) {
     res.json(notes);
   });
 });
 
 app.get('/notes/:id', function(req, res) {
   var id = req.params.id;
-  var note = Note.findOne({ '_id': id }, function(err, note) {
+  var note = Note.findOne({ '_id': id }).then(function(note) {
     res.json(note);
   });
 });
