@@ -7,7 +7,7 @@ article {
 }
 
 #navigation {
-
+  border-right: 1px solid black;
 }
 
 #content {
@@ -15,5 +15,5 @@ article {
 }
 
 #pages {
-
+  border-left: 1px solid black;
 }
