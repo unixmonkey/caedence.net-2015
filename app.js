@@ -7,8 +7,14 @@ var NoteSchema = db.Schema({
   body_html: String,
   body_text: String,
   user_id: Number,
+  url: String,
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
+});
+
+NoteSchema.pre('save', function(next) {
+  this.url = '/notes/' + this._id;
+  next();
 });
 
 var Note = db.model('Note', NoteSchema);
@@ -22,7 +28,7 @@ app.post('/notes/', function(req, res) {
   newNote.save(function(err) {
     if (err) { console.log('OHNOES!'); }
   });
-})
+});
 
 // create some records with mongo cli like this:
 // $ mongod
