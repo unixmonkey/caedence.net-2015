@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var Note = require('./models/note');
+var Note = require('../models/note');
 
 router.post('/notes/', function(req, res) {
   var newNote = new Note({

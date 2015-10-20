@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 // });
 
 // mount controller files
-var notes = require('./server/notes');
+var notes = require('./server/controllers/notes');
 app.use('/', notes);
 
 // Start server
