@@ -3,7 +3,7 @@ var app = express();
 
 // Serve assets in /public
 var path = require('path');
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client')));
 
 // Body parsing for JSON POST payloads
 var bodyParser = require('body-parser');
