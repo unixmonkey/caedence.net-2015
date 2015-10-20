@@ -1,5 +1,9 @@
 var app = require('express')();
 
+// Body parsing for JSON POST payloads
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -28,12 +32,12 @@ var Note = db.model('Note', NoteSchema);
 
 app.post('/notes/', function(req, res) {
   var newNote = new Note({
-    title: 'First Note!',
-    body_html: '<p>First!</p>',
-    body_text: 'First!'
+    title: req.body.title,
+    body_html: req.body.body_html
   });
   newNote.save(function(err) {
     if (err) { console.log('OHNOES!'); }
+    else { res.json({ note: newNote }); }
   });
 });
 
