@@ -9,7 +9,7 @@ angular.module('app')
     template: "\
       <navigation id='navigation' class='col-xs-3'>\
         <h2>Stories</h2>\
-        <article ng-repeat=\"story in ctrl.stories track by story._id | orderBy: '-updated_at'\">\
+        <article ng-click='ctrl.setContent(story)' ng-repeat=\"story in ctrl.stories track by story._id | orderBy: '-updated_at'\">\
           <h3>{{ story.title }}</h3>\
         </article>\
       </navigation>\
@@ -17,10 +17,13 @@ angular.module('app')
   };
 });
 
-function StoriesNavController(StoryService) {
+function StoriesNavController(StoryService, CurrentContent) {
   var self = this;
   StoryService.fetch().then(function() {
     self.stories = StoryService.all();
   });
+  this.setContent = function(story) {
+    CurrentContent.set(story);
+  }
 }
-StoriesNavController.$inject = ['StoryService'];
+StoriesNavController.$inject = ['StoryService', 'CurrentContent'];
