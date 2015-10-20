@@ -9,16 +9,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// Uncomment if serving from another domain or protocol
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 // mount controller files
 var notes = require('./server/notes');
 app.use('/', notes);
 
+// Start server
 var server = app.listen(3000, function() {
   console.log('Listening on http://localhost:3000');
 });
