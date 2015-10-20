@@ -19,6 +19,7 @@ angular.module('app')
 function ContentFormController(StoryService) {
   this.save = function() {
     StoryService.create(this.note);
+    this.note = {};
   }
 }
 ContentFormController.$inject = ['StoryService'];
