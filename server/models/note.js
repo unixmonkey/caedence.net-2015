@@ -13,6 +13,7 @@ var NoteSchema = db.Schema({
 
 NoteSchema.pre('save', function(next) {
   this.url = '/notes/' + this._id;
+  this.updated_at = Date.now;
   next();
 });
 
