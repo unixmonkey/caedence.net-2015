@@ -19,6 +19,8 @@ app.use(bodyParser.json());
 // mount controller files
 var notes = require('./server/controllers/notes');
 app.use('/', notes);
+var users = require('./server/controllers/users');
+app.use('/', users);
 
 // Start server
 var server = app.listen(3000, function() {
