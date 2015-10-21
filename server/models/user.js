@@ -27,6 +27,13 @@ UserSchema.methods.toJSON = function() {
   return object;
 }
 
+// Create method to compare passed-in password to password_digest
+UserSchema.methods.authenticate = function(password, callback) {
+  bcrypt.compare(password, this.password_digest, function(err, isMatch) {
+    callback(isMatch);
+  });
+}
+
 var User = db.model('User', UserSchema);
 
 module.exports = User;

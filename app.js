@@ -21,6 +21,8 @@ var notes = require('./server/controllers/notes');
 app.use('/', notes);
 var users = require('./server/controllers/users');
 app.use('/', users);
+var session = require('./server/controllers/session');
+app.use('/', session);
 
 // Start server
 var server = app.listen(3000, function() {
