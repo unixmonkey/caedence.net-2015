@@ -3,10 +3,10 @@ var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 
 router.post('/session/', function(req, res) {
-  User.findOne({ username: req.body.username }).then(function(user) {
+  User.findOne({ username: req.body.user.username }).then(function(user) {
     if (user) {
-      user.authenticate(req.body.password, function(isMatch) {
-        if (isMatch) { res.json({ user: user }); }
+      user.authenticate(req.body.user.password, function(isMatch) {
+        if (isMatch) { res.json({ auth_token: 'foo', user: user }); } // add JWT token to this
         else { res.json({ error: "Could not authenticate." }); }
       });
     }
