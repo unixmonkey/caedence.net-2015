@@ -9,12 +9,12 @@ app.use(express.static(path.join(__dirname, 'client')));
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-// Uncomment if serving from another domain or protocol
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+// Allow serving from another domain or protocol
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 
 // mount controller files
 var notes = require('./server/controllers/notes');
