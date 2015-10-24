@@ -20,10 +20,13 @@ UserSchema.pre('save', function(next) {
   next();
 });
 
-// Override toJSON to exclude fields from Express res.json()
+// Override toJSON to exclude fields from Express res.json() and rename _id to id
 UserSchema.methods.toJSON = function() {
   var object = this.toObject();
   delete object.password_digest;
+  delete object.version;
+  object.id = object._id;
+  delete object._id;
   return object;
 }
 

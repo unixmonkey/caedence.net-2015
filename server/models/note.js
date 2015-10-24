@@ -17,6 +17,16 @@ NoteSchema.pre('save', function(next) {
   next();
 });
 
+// Override toJSON to rename _id to id and __v to version
+NoteSchema.methods.toJSON = function() {
+  var object = this.toObject();
+  object.id = object._id;
+  delete object._id;
+  object.version = object.__v;
+  delete object.__v;
+  return object;
+}
+
 var Note = db.model('Note', NoteSchema);
 
 module.exports = Note;
