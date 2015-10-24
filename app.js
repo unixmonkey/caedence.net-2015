@@ -9,32 +9,14 @@ app.use(express.static(path.join(__dirname, 'client')));
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-// Allow serving from another domain or protocol
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-  next();
-});
+var cors = require('./server/middlewares/cross_origin_requests');
+app.use(cors);
 
-// Reject requests without api_key
-var User = require('./server/models/user');
-app.use(function(req, res, next) {
-  var apiKey = (req.query.api_key || req.body.api_key);
-  var isLoggingInOrRegistering = (req.body.user);
-  if (apiKey && !isLoggingInOrRegistering) {
-    User.findOne({ api_key: apiKey }).then(function(user){
-      if (user) {
-        req['user'] = user;
-        next();
-      } else {
-        res.sendStatus(401)
-      }
-    });
-  } else {
-    next();
-  }
-});
+var http_verbs = require('./server/middlewares/http_verbs');
+app.use(http_verbs);
+
+var add_user_to_request = require('./server/middlewares/add_user_to_request');
+app.use(add_user_to_request);
 
 // mount controller files
 var notes = require('./server/controllers/notes');
