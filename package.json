@@ -2,9 +2,9 @@
   "name": "caedence.net",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node_modules/.bin/supervisor app.js",
+    "start": "node_modules/.bin/supervisor server.js",
     "prestart": "mongod &",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
