@@ -13,7 +13,7 @@ router.post('/notes/', function(req, res) {
 });
 
 // create some records with mongo cli like this:
-// $ mongod
+// $ mongo
 // > use caedence_net_development
 // > db.notes.insert({ title: "Hello", body_html: "<p>World</p>", body_text: "World" })
 // WriteResult({ "nInserted" : 1 })
@@ -29,6 +29,12 @@ router.get('/notes/:id', function(req, res) {
   var id = req.params.id;
   var note = Note.findOne({ '_id': id }).then(function(note) {
     res.json(note);
+  });
+});
+
+router.delete('/notes/:id', function(req, res) {
+  Note.findOne({ '_id': req.params.id }).remove(function() {
+    res.json({ message: 'Successfully deleted note.' });
   });
 });
 
