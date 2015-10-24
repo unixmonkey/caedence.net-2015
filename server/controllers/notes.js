@@ -32,6 +32,16 @@ router.get('/notes/:id', function(req, res) {
   });
 });
 
+router.put('/notes/:id', function(req, res) {
+  Note.findOne({ '_id': req.params.id}).then(function(note) {
+    note.title = req.body.note.title;
+    note.body_html = req.body.note.body_html;
+    note.save().then(function() {
+      res.json({ message: 'Successfully updated note', note: note });
+    });
+  });
+});
+
 router.delete('/notes/:id', function(req, res) {
   Note.findByIdAndRemove(req.params.id).then(function() {
     res.json({ message: 'Successfully deleted note.' });
