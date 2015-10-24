@@ -17,6 +17,25 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Reject requests without api_key
+var User = require('./server/models/user');
+app.use(function(req, res, next) {
+  var apiKey = (req.query.api_key || req.body.api_key);
+  var isLoggingInOrRegistering = (req.body.user);
+  if (apiKey && !isLoggingInOrRegistering) {
+    User.findOne({ api_key: apiKey }).then(function(user){
+      if (user) {
+        req['user'] = user;
+        next();
+      } else {
+        res.sendStatus(401)
+      }
+    });
+  } else {
+    next();
+  }
+});
+
 // mount controller files
 var notes = require('./server/controllers/notes');
 app.use('/', notes);
