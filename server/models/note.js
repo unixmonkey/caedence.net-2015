@@ -1,5 +1,6 @@
 var db = require('mongoose');
 db.connect('mongodb://localhost/caedence_net_development');
+var sanitizeHtml = require('sanitize-html');
 
 var NoteSchema = db.Schema({
   title: String,
@@ -13,6 +14,10 @@ var NoteSchema = db.Schema({
 
 NoteSchema.pre('save', function(next) {
   this.url = '/notes/' + this._id;
+  this.body_text = sanitizeHtml(this.body_html, {
+    allowedTags: [],
+    allowedAttributes: []
+  });
   this.updated_at = Date.now;
   next();
 });
