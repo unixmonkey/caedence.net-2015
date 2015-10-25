@@ -23,9 +23,9 @@ UserSchema.pre('save', function(next) {
 UserSchema.methods.toJSON = function() {
   var object = this.toObject();
   delete object.password_digest;
-  delete object.version;
   object.id = object._id;
   delete object._id;
+  delete object.__v;
   return object;
 }
 
