@@ -15,9 +15,9 @@ app.use(require('./middlewares/http_verbs'));
 app.use(require('./middlewares/add_user_to_request'));
 
 // Mount controller files
-app.use('/', require('./controllers/notes'));
-app.use('/', require('./controllers/users'));
-app.use('/', require('./controllers/session'));
+app.use('/', require('./routes/notes'));
+app.use('/', require('./routes/users'));
+app.use('/', require('./routes/session'));
 
 // Start server
 var server = app.listen(3000, function() {
