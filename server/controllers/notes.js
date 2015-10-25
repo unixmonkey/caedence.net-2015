@@ -3,11 +3,11 @@ var Note = require('../models/note');
 
 router.post('/notes/', function(req, res) {
   var newNote = new Note({
-    title: req.body.title,
-    body_html: req.body.body_html
+    title: req.body.note.title,
+    body_html: req.body.note.body_html
   });
   newNote.save(function(err) {
-    if (err) { console.log('OHNOES!'); }
+    if (err) { console.log('OHNOES!', err); }
     else { res.json({ note: newNote }); }
   });
 });
