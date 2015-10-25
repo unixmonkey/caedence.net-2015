@@ -1,6 +1,5 @@
 var bcrypt = require('bcryptjs');
-var db = require('mongoose');
-db.createConnection('mongodb://localhost/caedence_net_development');
+var db = require('../db');
 
 var UserSchema = db.Schema({
   username: { type: String, required: true, unique: true, index: true },

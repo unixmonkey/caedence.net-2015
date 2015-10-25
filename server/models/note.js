@@ -1,5 +1,4 @@
-var db = require('mongoose');
-db.connect('mongodb://localhost/caedence_net_development');
+var db = require('../db');
 var sanitizeHtml = require('sanitize-html');
 
 var NoteSchema = db.Schema({
