@@ -1,18 +1,6 @@
 var router = require('express').Router();
 var Note = require('../models/note');
 
-router.post('/', function(req, res) {
-  var newNote = new Note({
-    user: req.user,
-    title: req.body.note.title,
-    body_html: req.body.note.body_html
-  });
-  newNote.save(function(err) {
-    if (err) { console.log('OHNOES!', err); }
-    else { res.json({ note: newNote }); }
-  });
-});
-
 // create some records with mongo cli like this:
 // $ mongo
 // > use caedence_net_development
@@ -30,6 +18,18 @@ router.get('/:id', function(req, res) {
   var id = req.params.id;
   var note = Note.findOne({ user: req.user, _id: id }).then(function(note) {
     res.json(note);
+  });
+});
+
+router.post('/', function(req, res) {
+  var newNote = new Note({
+    user: req.user,
+    title: req.body.note.title,
+    body_html: req.body.note.body_html
+  });
+  newNote.save(function(err) {
+    if (err) { console.log('OHNOES!', err); }
+    else { res.json({ note: newNote }); }
   });
 });
 
