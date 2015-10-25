@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
 // > db.notes.find()
 // { "_id" : ObjectId("562473c0802fa33ca991217b"), "title" : "Hello", "body_html" : "<p>World</p>", "body_text" : "World" }
 router.get('/', function(req, res) {
-  Note.find({ user: req.user }).then(function(notes) {
+  Note.find({ user: req.user }).sort({ updated_at: 'desc' }).then(function(notes) {
     res.json(notes);
   });
 });
