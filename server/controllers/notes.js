@@ -21,20 +21,20 @@ router.post('/notes/', function(req, res) {
 // > db.notes.find()
 // { "_id" : ObjectId("562473c0802fa33ca991217b"), "title" : "Hello", "body_html" : "<p>World</p>", "body_text" : "World" }
 router.get('/notes/', function(req, res) {
-  Note.find().then(function(notes) {
+  Note.find({ user: req.user }).then(function(notes) {
     res.json(notes);
   });
 });
 
 router.get('/notes/:id', function(req, res) {
   var id = req.params.id;
-  var note = Note.findOne({ '_id': id }).then(function(note) {
+  var note = Note.findOne({ user: req.user, '_id': id }).then(function(note) {
     res.json(note);
   });
 });
 
 router.put('/notes/:id', function(req, res) {
-  Note.findOne({ '_id': req.params.id}).then(function(note) {
+  Note.findOne({ user: req.user, '_id': req.params.id }).then(function(note) {
     note.title = req.body.note.title;
     note.body_html = req.body.note.body_html;
     note.save().then(function() {
@@ -44,8 +44,10 @@ router.put('/notes/:id', function(req, res) {
 });
 
 router.delete('/notes/:id', function(req, res) {
-  Note.findByIdAndRemove(req.params.id).then(function() {
-    res.json({ message: 'Successfully deleted note.' });
+  Note.findOne({ user: req.user, '_id': req.params.id }).then(function(note) {
+    note.remove().then(function(){
+      res.json({ message: 'Successfully deleted note.' });
+    });
   });
 });
 
