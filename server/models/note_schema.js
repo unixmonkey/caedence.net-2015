@@ -1,11 +1,12 @@
 var db = require('../db');
 var sanitizeHtml = require('sanitize-html');
+var ObjectIdType = db.Schema.Types.ObjectId;
 
 var NoteSchema = db.Schema({
   title: String,
   body_html: String,
   body_text: String,
-  user_id: Number,
+  user: { type: ObjectIdType, ref: 'User' },
   url: String,
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
