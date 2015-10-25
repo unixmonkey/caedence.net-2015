@@ -2,7 +2,7 @@ var router = require('express').Router();
 var User = require('../models/user');
 var bcrypt = require('bcryptjs');
 
-router.post('/users/', function(req, res) {
+router.post('/', function(req, res) {
   var newUser = new User({
     username: req.body.username,
     name: req.body.name,

@@ -2,7 +2,7 @@ var router = require('express').Router();
 var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 
-router.post('/session/', function(req, res) {
+router.post('/', function(req, res) {
   User.findOne({ username: req.body.user.username }).then(function(user) {
     if (user) {
       user.authenticate(req.body.user.password, function(isMatch) {
