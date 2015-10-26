@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node_modules/.bin/supervisor server/app.js",
-    "prestart": "mongod &",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "npm install",
+    "postinstall": "mongod &",
+    "start": "node_modules/.bin/supervisor server/app.js"
   },
   "author": "David & Caedence Jones",
   "license": "MIT",
