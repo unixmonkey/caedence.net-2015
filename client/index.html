@@ -1,56 +1,41 @@
 <!DOCTYPE html>
-<html ng-app="app" ng-strict-di>
+<!--[if lt IE 7]>      <html lang="en" ng-app="notely" class="no-js lt-ie9 lt-ie8 lt-ie7" ng-strict-di> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="notely" class="no-js lt-ie9 lt-ie8" ng-strict-di> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="notely" class="no-js lt-ie9" ng-strict-di> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="notely" class="no-js" ng-strict-di> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <title>Caedence's Corner</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css" charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="$state.current.name + ' - Notely'">Notely</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" charset="utf-8">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic|Oxygen:400,300,700">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/textAngular/src/textAngular.css">
+    <link rel="stylesheet" href="/content/app.css" charset="utf-8">
   </head>
   <body>
-    <section class="container wrap">
+
+    <div class="container wrap">
       <div class="row">
-        <header class="col-xs-12">
-          <h1>Caedence's Corner</h1>
-        </header>
+        <div class="col-xs-12">
+          <header>
+            <div class="well">
+              Notely
+              <bd-user-links></bd-user-links>
+            </div>
+          </header>
+        </div>
       </div>
-    </section>
-    <section class="container">
-      <div class="row">
+      <div ui-view></div>
+    </div>
 
-        <stories-nav></stories-nav>
+    <script src="vendor.js"></script>
+    <script src="bundle.js"></script>
 
-        <content-section></content-section>
-
-        <content-form></content-form>
-
-        <!-- <section id="pages" class="col-xs-3">
-          <h2>Pages</h2>
-          <article>
-            <h3>About Me</h3>
-          </article>
-          <article>
-            <h3>Life</h3>
-          </article>
-          <article>
-            <h3>Math</h3>
-          </article>
-          <article>
-            <h3>Blog</h3>
-          </article>
-          <article>
-            <h3>Questions &amp; Answers</h3>
-          </article>
-        </section> -->
-
-      </div>
-    </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.min.js"></script>
-    <script src="index.js"></script>
-    <script src="services/story-service.js"></script>
-    <script src="services/current-content.js"></script>
-    <script src="components/stories-nav.js"></script>
-    <script src="components/content-section.js"></script>
-    <script src="components/content-form.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular-sanitize.min.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular.min.js"></script>
   </body>
 </html>
