@@ -6,7 +6,8 @@
   "scripts": {
     "prestart": "npm install",
     "postinstall": "mongod &",
-    "start": "node_modules/.bin/supervisor server/app.js"
+    "start": "node server/app.js",
+    "start_dev": "node_modules/.bin/supervisor server/app.js"
   },
   "author": "David & Caedence Jones",
   "license": "MIT",
