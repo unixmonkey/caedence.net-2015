@@ -19,7 +19,7 @@
     "start": "./node_modules/.bin/webpack --watch",
     "build": "./node_modules/.bin/webpack",
     "prestart": "npm install",
-    "postinstall": "bower install",
+    "postinstall": "./node_modules/.bin/bower install",
     "preupdate-webdriver": "npm install"
   }
 }
