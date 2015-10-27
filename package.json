@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "prestart": "npm install",
+    "prestart": "npm install && cd client && npm install && npm run build && cd ..",
     "start": "node server/app.js",
     "start_dev": "node_modules/.bin/supervisor server/app.js && mongod &"
   },
