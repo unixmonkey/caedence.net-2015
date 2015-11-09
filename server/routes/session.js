@@ -7,7 +7,7 @@ router.post('/', function(req, res) {
   User.findOne({ username: req.body.user.username }).then(function(user) {
     if (user) {
       user.authenticate(req.body.user.password, function(isMatch) {
-        var token = jwt.sign(user._id, jwtSecret, { expiresInMinutes: 60*24 });
+        var token = jwt.sign(user._id, jwtSecret, { expiresIn: 24*60*60 });
         if (isMatch) { res.json({ auth_token: token, user: user }); }
         else { res.json({ error: "Could not authenticate." }); }
       });
