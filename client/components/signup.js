@@ -28,15 +28,15 @@ angular.module('notely.signup')
             <form id="new_user" ng-submit="ctrl.submit()">
               <p>
                 <label for="name">Full Name</label><br>
-                <input type="text" name="name" autofocus="autofocus" ng-model="ctrl.user.name">
+                <input type="text" name="name" autofocus="autofocus" ng-model="ctrl.user.name" required>
               </p>
               <p>
                 <label for="username">Username</label><br>
-                <input type="text" name="username" ng-model="ctrl.user.username">
+                <input type="text" name="username" ng-model="ctrl.user.username" required>
               </p>
               <p>
                 <label for="password">Password</label><br>
-                <input type="password" name="password" ng-model="ctrl.user.password">
+                <input type="password" name="password" ng-model="ctrl.user.password" required>
               </p>
               <input type="submit" name="commit" value="Sign Up" class="btn btn-default">
               <span class="login">
