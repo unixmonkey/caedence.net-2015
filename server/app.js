@@ -20,7 +20,7 @@ app.use('/users', require('./routes/users'));
 app.use('/session', require('./routes/session'));
 
 // Start server
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 3000));
 app.listen(app.get('port'), function() {
   console.log('Listening on http://localhost:', app.get('port'));
 });
